@@ -1,0 +1,28 @@
+replicaCount: 2
+
+image: michaelnv/python-crud-service:latest
+
+service:
+  type: NodePort
+  port: 8000
+
+postgresql:
+  enabled: true
+  postgresqlUsername: username
+  postgresqlPassword: secret
+  postgresqlDatabase: crud-service
+  service:
+    port: "5432"
+
+ingress:
+  enabled: true
+  annotations:
+     kubernetes.io/ingress.class: nginx
+  hosts:
+    - host: arch.homework
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: backend
