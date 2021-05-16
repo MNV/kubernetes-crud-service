@@ -10,5 +10,6 @@ spec:
     - port: {{ .Values.service.port }}
       targetPort: 80
       protocol: TCP
+      name: web
   selector:
     {{- include "crud-service-chart.selectorLabels" . | nindent 4 }}

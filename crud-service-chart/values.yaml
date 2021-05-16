@@ -14,15 +14,12 @@ postgresql:
   service:
     port: "5432"
 
+metrics:
+  serviceMonitor:
+    enabled: true
+
 ingress:
   enabled: true
-  annotations:
-     kubernetes.io/ingress.class: nginx
   hosts:
     - host: arch.homework
-      paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: backend
+      paths: ["/"]
